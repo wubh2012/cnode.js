@@ -38,17 +38,20 @@ Vue.filter('formatterDate', function (str) {
   }
 })
 Vue.filter('formatterTab', function (item) {
+  if(!item){
+    return ''
+  }
   let tabObj = {
-    ask: "问答",
-    share: "分享",
-    job: "招聘",
-    dev: "客户端测试"
+    ask: '问答',
+    share: '分享',
+    job: '招聘',
+    dev: '客户端测试'
   };
   if (item.top === true) {
-    return "置顶";
+    return '置顶';
   } else if (item.good === true) {
-    return "精华";
+    return '精华';
   } else {
-    return tabObj[item.tab] || "其它";
+    return tabObj[item.tab] || '其它';
   }
 })
