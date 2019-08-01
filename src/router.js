@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import TopicDetail from './components/TopicDetail.vue'
 import UserInfo from './components/UserInfo.vue'
+import SidebarUserInfo from './components/Sidebar-UserInfo.vue'
 
 Vue.use(Router)
 
@@ -18,11 +19,11 @@ export default new Router({
       }
     },
     {
-      path: '/topic/:id',
+      path: '/topic/:id&:name',
       name: 'topicDetail',
       components: {
         main: TopicDetail,
-        aside: ''
+        aside: SidebarUserInfo
       }
     },
     {
@@ -30,7 +31,7 @@ export default new Router({
       name: 'user',
       components: {
         main: UserInfo,
-        aside: ''
+        aside: SidebarUserInfo
       }
     },    
     {

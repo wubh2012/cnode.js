@@ -6,21 +6,24 @@ body {
   word-break: break-word;
   color: #333;
 }
+a{color: #08c;}
 .container {
   display: flex;
-  width: 90%;
   max-width: 1400px;
   min-width: 960px;
   min-height: 400px;
   margin: 15px auto;
   .main {
     flex: 1;
+    max-width: 1100px;
+    min-width: 670px;
   }
   .aside {
-    width: 230px;
+    display: flex;
+    flex-direction: column;
+    width: 290px;
     margin-left: 15px;
-    min-height: 400px;
-    border: 1px solid;
+    margin-bottom: 20px;
   }
 }
 .panel {
@@ -29,7 +32,7 @@ body {
     padding: 8px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    background-color: #f6f6f6;    
+    background-color: #f6f6f6;
   }
   .body{
     display: block;

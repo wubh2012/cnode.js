@@ -19,29 +19,40 @@
     <div class="panel">
       <div class="header">最近创建的话题</div>
       <div class="body">
-        <div class="cell userinfo" v-for="topic in topics" :key="topic.id">
-          <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
-            <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
-          </router-link>
-          <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: topic.id}}" :title="topic.title" >
-            {{topic.title}}
-          </router-link>
-          <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+        <div v-if="topics.length > 0">
+          <div class="cell userinfo" v-for="topic in topics" :key="topic.id">
+            <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
+              <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
+            </router-link>
+            <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: topic.id}}" :title="topic.title" >
+              {{topic.title}}
+            </router-link>
+            <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+          </div>
         </div>
+        <div v-else>
+          <p>无话题</p>
+        </div>        
       </div>
     </div>
     <div class="panel">
       <div class="header">最近参与的话题</div>
       <div class="body">
-        <div class="cell userinfo" v-for="topic in topics" :key="topic.id">
-          <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
-            <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
-          </router-link>
-          <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: topic.id}}" :title="topic.title" >
-            {{topic.title}}
-          </router-link>
-          <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+        <div v-if="replies.length > 0">
+          <div class="cell userinfo" v-for="reply in replies" :key="reply.id">
+              <router-link :to="{name: 'user', params: {name: reply.author.loginname}}" class="userAvatar">
+                <img :src="reply.author.avatar_url" alt="" :title="reply.author.loginname" />
+              </router-link>
+              <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: reply.id}}" :title="reply.title" >
+                {{reply.title}}
+              </router-link>
+              <span class="lastTime">{{reply.last_reply_at | formatterDate}}</span>
+          </div>
         </div>
+        <div v-else>
+          <p>无话题</p>
+        </div>
+        
       </div>
     </div>
   </div>

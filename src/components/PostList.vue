@@ -20,7 +20,7 @@
         </span>
         <span class="badge" :class="{top: topic.top, good: topic.good}">{{topic | formatterTab}}</span>
         <router-link class="topicTitle"
-          :to="{name: 'topicDetail', params: {id: topic.id}}"          
+          :to="{name: 'topicDetail', params: {id: topic.id, name: topic.author.loginname}}"
           :title="topic.title"
         >{{topic.title}}</router-link>
         <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
