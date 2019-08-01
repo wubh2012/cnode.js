@@ -1,5 +1,6 @@
 <template>
   <div class="panel">
+    
     <div class="header">
       <a href="/?tab=all" class="topicTab active">全部</a>
       <a href="/?tab=good" class="topicTab">精华</a>
@@ -29,6 +30,7 @@
   </div>
 </template>
 <script>
+
 export default {
   name: "postList",
   data() {

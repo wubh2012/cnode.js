@@ -32,7 +32,7 @@
         </div>
         <div v-else>
           <p>无话题</p>
-        </div>        
+        </div>
       </div>
     </div>
     <div class="panel">
@@ -52,7 +52,6 @@
         <div v-else>
           <p>无话题</p>
         </div>
-        
       </div>
     </div>
   </div>

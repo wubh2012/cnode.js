@@ -15,7 +15,7 @@ export default new Router({
       path: '/',
       name: 'home',
       components: {
-        main: Home
+        main: Home,
       }
     },
     {
@@ -23,7 +23,7 @@ export default new Router({
       name: 'topicDetail',
       components: {
         main: TopicDetail,
-        aside: SidebarUserInfo
+        aside: SidebarUserInfo,
       }
     },
     {
@@ -31,7 +31,7 @@ export default new Router({
       name: 'user',
       components: {
         main: UserInfo,
-        aside: SidebarUserInfo
+        aside: SidebarUserInfo,
       }
     },    
     {
