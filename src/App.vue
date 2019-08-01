@@ -9,8 +9,7 @@
         <QRCode/>
       </div>
     </div>
-    <Footerbar/>
-    
+    <Footerbar/>    
   </div>
 </template>
 

@@ -13,20 +13,24 @@
       <div class="body" v-html="topicDetail.content"></div>
     </div>
     <div class="panel">
-      <div class="header">
-        <span>{{topicDetail.reply_count}} 回复</span>
-      </div>
-      <div class="cell" v-for="(reply, index) in replies" :key="reply.id" :id="reply.id">
-        <div class="authorContent">
-          <img :src="reply.author.avatar_url" :title="reply.author.loginname" />
-          <span class="replyAuthor"> {{reply.author.loginname}}</span>
-          <a class="replyTime"> {{index + 1}}楼 • {{reply.create_at | formatterDate}}</a>
-          <span class="replyByAuthor" v-if="reply.author.loginname === topicDetail.author.loginname">作者</span>
-          <span v-else></span>
-          <span class="action" v-if="reply.ups.length > 0">👍 {{reply.ups.length}}</span>
-          <span class="action" v-else></span>
+      <div v-if="topicDetail.reply_count > 0">
+        <div class="header">
+          <span>{{topicDetail.reply_count}} 回复</span>
         </div>
-        <div class="replayContent" v-html="reply.content"></div>
+        <div class="cell" v-for="(reply, index) in replies" :key="reply.id" :id="reply.id">
+          <div class="authorContent">
+            <img :src="reply.author.avatar_url" :title="reply.author.loginname" />
+            <span class="replyAuthor"> {{reply.author.loginname}}</span>
+            <a class="replyTime"> {{index + 1}}楼 • {{reply.create_at | formatterDate}}</a>
+            <span class="replyByAuthor" v-if="reply.author.loginname === topicDetail.author.loginname">作者</span>
+            <span v-else></span>
+            <span class="action" v-if="reply.ups.length > 0">👍 {{reply.ups.length}}</span>
+            <span class="action" v-else></span>
+          </div>
+          <div class="replayContent" v-html="reply.content"></div>
+        </div>
+      </div>
+      <div v-else>
       </div>
     </div>
   </div>
