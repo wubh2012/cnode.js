@@ -10,18 +10,17 @@
     </div>
     <div>
       <div class="cell" v-for="topic in postlist" :key="topic.id">
-        <a href="/user/#" class="userAvatar">
+        <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
           <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
-        </a>
+        </router-link>
         <span class="replayCount">
           <span class="replyOfCount">{{topic.reply_count}}</span>
           <span class="countSeperator">/</span>
           <span class="visitOfCount">{{topic.visit_count}}</span>
         </span>
         <span class="badge" :class="{top: topic.top, good: topic.good}">{{topic | formatterTab}}</span>
-        <router-link
-          :to="{name: 'topicDetail', params: {id: topic.id}}"
-          class="topicTitle"
+        <router-link class="topicTitle"
+          :to="{name: 'topicDetail', params: {id: topic.id}}"          
           :title="topic.title"
         >{{topic.title}}</router-link>
         <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import TopicDetail from './components/TopicDetail.vue'
+import UserInfo from './components/UserInfo.vue'
 
 Vue.use(Router)
 
@@ -21,6 +22,14 @@ export default new Router({
       name: 'topicDetail',
       components: {
         main: TopicDetail,
+        aside: ''
+      }
+    },
+    {
+      path: '/user/:name',
+      name: 'user',
+      components: {
+        main: UserInfo,
         aside: ''
       }
     },    
