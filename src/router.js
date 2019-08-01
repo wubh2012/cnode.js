@@ -23,7 +23,7 @@ export default new Router({
         main: TopicDetail,
         aside: ''
       }
-    },
+    },    
     {
       path: '/about',
       name: 'about',

@@ -2,12 +2,12 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="logo">
-        <a href="#" class="brand">
-          <img src="../assets/cnodejs_light.svg" alt srcset />
+        <a href="/" class="brand">
+          <img src="../assets/img/cnodejs_light.svg" alt srcset />
         </a>
         <div class="searchbar">
           <input type="text" class="search" />
-          <img src="../assets/search.png" alt srcset />
+          <img src="../assets/img/search.png" alt srcset />
         </div>
       </div>
       <ul class="nav">

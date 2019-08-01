@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style src="../assets/markdown-github.css"></style>
+<style src="../assets/css/markdown-github.css"></style>
 <style lang="scss" scoped>
 .panel {
   .header {
