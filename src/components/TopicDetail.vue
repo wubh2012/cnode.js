@@ -73,6 +73,7 @@ export default {
             this.replies = this.topicDetail.replies
             this.loading = false
             
+            
           }
         })
         .catch(err => {

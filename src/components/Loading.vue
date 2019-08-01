@@ -15,14 +15,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .overlay {
+  display: none;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
-  text-align: center;
-  display: none;
+  z-index: 1000;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: #efefef;
 }
 
