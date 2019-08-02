@@ -1,9 +1,10 @@
 <template>
-  <div class="panel">
-    <div v-if="isloading">
-      <XLoading />
-    </div>
-    <div v-else>
+  <div v-if="isloading">
+    <XLoading />
+  </div>
+  <div v-else>
+    
+    <div class="panel">
       <div class="header">
         <a href="/?tab=all" class="topicTab active">全部</a>
         <a href="/?tab=good" class="topicTab">精华</a>
@@ -32,12 +33,14 @@
             :title="topic.title"
           >{{topic.title}}</router-link>
           <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
-        </div>
+        </div>        
+        <Pagination />
       </div>
     </div>
   </div>
 </template>
 <script>
+import Pagination from "@/components/Pagination";
 export default {
   name: "postList",
   data() {
@@ -45,6 +48,9 @@ export default {
       isloading: true,
       postlist: []
     };
+  },
+  components: {
+    Pagination
   },
   methods: {
     getData() {
@@ -54,7 +60,7 @@ export default {
           if (res.data.success === true) {
             console.log("topics", res);
             this.postlist = res.data.data;
-            this.isloading = false
+            this.isloading = false;
           }
         })
         .catch(err => {
