@@ -1,40 +1,48 @@
 <template>
   <div class="panel">
-    
-    <div class="header">
-      <a href="/?tab=all" class="topicTab active">全部</a>
-      <a href="/?tab=good" class="topicTab">精华</a>
-      <a href="/?tab=share" class="topicTab">分享</a>
-      <a href="/?tab=ask" class="topicTab">问答</a>
-      <a href="/?tab=job" class="topicTab">招聘</a>
-      <a href="/?tab=dev" class="topicTab">客户端测试</a>
+    <div v-if="isloading">
+      <XLoading />
     </div>
-    <div>
-      <div class="cell" v-for="topic in postlist" :key="topic.id">
-        <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
-          <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
-        </router-link>
-        <span class="replayCount">
-          <span class="replyOfCount">{{topic.reply_count}}</span>
-          <span class="countSeperator">/</span>
-          <span class="visitOfCount">{{topic.visit_count}}</span>
-        </span>
-        <span class="badge" :class="{top: topic.top, good: topic.good}">{{topic | formatterTab}}</span>
-        <router-link class="topicTitle"
-          :to="{name: 'topicDetail', params: {id: topic.id, name: topic.author.loginname}}"
-          :title="topic.title"
-        >{{topic.title}}</router-link>
-        <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+    <div v-else>
+      <div class="header">
+        <a href="/?tab=all" class="topicTab active">全部</a>
+        <a href="/?tab=good" class="topicTab">精华</a>
+        <a href="/?tab=share" class="topicTab">分享</a>
+        <a href="/?tab=ask" class="topicTab">问答</a>
+        <a href="/?tab=job" class="topicTab">招聘</a>
+        <a href="/?tab=dev" class="topicTab">客户端测试</a>
+      </div>
+      <div>
+        <div class="cell" v-for="topic in postlist" :key="topic.id">
+          <router-link
+            :to="{name: 'user', params: {name: topic.author.loginname}}"
+            class="userAvatar"
+          >
+            <img :src="topic.author.avatar_url" alt :title="topic.author.loginname" />
+          </router-link>
+          <span class="replayCount">
+            <span class="replyOfCount">{{topic.reply_count}}</span>
+            <span class="countSeperator">/</span>
+            <span class="visitOfCount">{{topic.visit_count}}</span>
+          </span>
+          <span class="badge" :class="{top: topic.top, good: topic.good}">{{topic | formatterTab}}</span>
+          <router-link
+            class="topicTitle"
+            :to="{name: 'topicDetail', params: {id: topic.id, name: topic.author.loginname}}"
+            :title="topic.title"
+          >{{topic.title}}</router-link>
+          <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-
 export default {
   name: "postList",
   data() {
     return {
+      isloading: true,
       postlist: []
     };
   },
@@ -46,6 +54,7 @@ export default {
           if (res.data.success === true) {
             console.log("topics", res);
             this.postlist = res.data.data;
+            this.isloading = false
           }
         })
         .catch(err => {
@@ -53,7 +62,7 @@ export default {
         });
     }
   },
-  beforeMount() {
+  created() {
     this.getData();
   }
 };

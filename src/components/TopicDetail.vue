@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="loading">
-      <Loading />
+    <div v-if="isloading">
+      <XLoading />
     </div>
     <div v-else>
       <div class="panel">
@@ -46,47 +46,44 @@
   </div>
 </template>
 <script>
-import Loading from "@/components/Loading";
 export default {
   name: "topicDetail",
   data() {
     return {
-      loading: true,
+      isloading: true,
       topicDetail: null,
       replies: []
     };
-  },
-  components: {
-    Loading
-  },
+  },  
   methods: {
     getData() {
-      this.loading = true
-      console.log("topicId", this.$route.params.id);
-      console.log("topicDetail", this.topicDetail);
+      
+      console.log("topicId", this.$route.params.id)
+      console.log("topicDetail", this.topicDetail)
       this.$http
         .get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
         .then(res => {
           if (res.data.success === true) {
-            console.log("topicDetail", res);
-            this.topicDetail = res.data.data;
+            console.log("topicDetail", res)
+            this.topicDetail = res.data.data
             this.replies = this.topicDetail.replies
-            this.loading = false
-            
-            
+            this.isloading = false
           }
         })
         .catch(err => {
-          console.error("获取主题详情异常", err);
+          console.error("获取主题详情异常", err)
         });
     }
   },
-  beforeMount() {
+  created() {
     this.getData();
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    $route: "getData"
+    $route(to, from) {
+      this.isloading = true
+      this.getData()
+    }
   }
 };
 </script>

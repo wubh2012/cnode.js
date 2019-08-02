@@ -1,56 +1,61 @@
 <template>
   <div>
-    <div class="panel">
-      <div class="header">
-        <a href="/">主页</a> <span class="separator">/</span>
-        </div>
-      <div class="body">
-        <div class="userProfile">
-          <p class="avatar">
-            <img :src="user.avatar_url" alt="" :title="user.loginname">
-            <span>{{user.loginname}}</span>
-          </p>
-          <p class="score">{{user.score}} 积分</p>
-          <p class="githubuser"><img src="../assets/img/github.png" alt="" srcset=""> {{user.githubUsername}}</p>
-          <p class="registerTime">注册时间 {{user.create_at | formatterDate}}</p>
-        </div>
-      </div>
+    <div v-if="isloading">
+      <XLoading/>
     </div>
-    <div class="panel">
-      <div class="header">最近创建的话题</div>
-      <div class="body">
-        <div v-if="topics.length > 0">
-          <div class="cell userinfo" v-for="topic in topics" :key="topic.id">
-            <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
-              <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
-            </router-link>
-            <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: topic.id}}" :title="topic.title" >
-              {{topic.title}}
-            </router-link>
-            <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+    <div v-else>
+      <div class="panel">
+        <div class="header">
+          <a href="/">主页</a> <span class="separator">/</span>
+          </div>
+        <div class="body">
+          <div class="userProfile">
+            <p class="avatar">
+              <img :src="user.avatar_url" alt="" :title="user.loginname">
+              <span>{{user.loginname}}</span>
+            </p>
+            <p class="score">{{user.score}} 积分</p>
+            <p class="githubuser"><img src="../assets/img/github.png" alt="" srcset=""> {{user.githubUsername}}</p>
+            <p class="registerTime">注册时间 {{user.create_at | formatterDate}}</p>
           </div>
         </div>
-        <div v-else>
-          <p>无话题</p>
-        </div>
       </div>
-    </div>
-    <div class="panel">
-      <div class="header">最近参与的话题</div>
-      <div class="body">
-        <div v-if="replies.length > 0">
-          <div class="cell userinfo" v-for="reply in replies" :key="reply.id">
-              <router-link :to="{name: 'user', params: {name: reply.author.loginname}}" class="userAvatar">
-                <img :src="reply.author.avatar_url" alt="" :title="reply.author.loginname" />
+      <div class="panel">
+        <div class="header">最近创建的话题</div>
+        <div class="body">
+          <div v-if="topics.length > 0">
+            <div class="cell userinfo" v-for="topic in topics" :key="topic.id">
+              <router-link :to="{name: 'user', params: {name: topic.author.loginname}}" class="userAvatar">
+                <img :src="topic.author.avatar_url" alt="" :title="topic.author.loginname" />
               </router-link>
-              <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: reply.id}}" :title="reply.title" >
-                {{reply.title}}
+              <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: topic.id}}" :title="topic.title" >
+                {{topic.title}}
               </router-link>
-              <span class="lastTime">{{reply.last_reply_at | formatterDate}}</span>
+              <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
+            </div>
+          </div>
+          <div v-else>
+            <p>无话题</p>
           </div>
         </div>
-        <div v-else>
-          <p>无话题</p>
+      </div>
+      <div class="panel">
+        <div class="header">最近参与的话题</div>
+        <div class="body">
+          <div v-if="replies.length > 0">
+            <div class="cell userinfo" v-for="reply in replies" :key="reply.id">
+                <router-link :to="{name: 'user', params: {name: reply.author.loginname}}" class="userAvatar">
+                  <img :src="reply.author.avatar_url" alt="" :title="reply.author.loginname" />
+                </router-link>
+                <router-link class="topicTitle" :to="{name: 'topicDetail', params: {id: reply.id}}" :title="reply.title" >
+                  {{reply.title}}
+                </router-link>
+                <span class="lastTime">{{reply.last_reply_at | formatterDate}}</span>
+            </div>
+          </div>
+          <div v-else>
+            <p>无话题</p>
+          </div>
         </div>
       </div>
     </div>
@@ -61,6 +66,7 @@ export default {
   name: 'userinfo',
   data(){
     return {
+      isloading: true,
       user: {},
       topics: [],
       replies: []
@@ -71,6 +77,7 @@ export default {
       console.log('name', this.$route.params.name)
       this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
         .then((res)=>{
+          this.isloading = false
           console.log('userinfo', res)
           this.user = res.data.data
           this.topics = this.user.recent_topics
@@ -81,7 +88,7 @@ export default {
         })
     }
   },
-  beforeMount(){
+  created(){
     this.getUserInfo()
   }
 }

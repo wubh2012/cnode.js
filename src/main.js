@@ -3,15 +3,22 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import Loading from "@/components/Loading";
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+
+Vue.component('XLoading', Loading)
 
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+
+
 
 Vue.filter('formatterDate', function (str) {
   if (!str) {

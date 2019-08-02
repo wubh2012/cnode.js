@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: "loading"
+  name: "Loading"
 };
 </script>
 <style lang="scss" scoped>

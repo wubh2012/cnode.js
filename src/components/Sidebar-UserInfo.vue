@@ -58,7 +58,7 @@ export default {
       return this.replies.slice(0, 5)
     }
   },
-  beforeMount() {
+  created() {
     this.getUserInfo();
   }
 };
