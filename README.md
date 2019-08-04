@@ -1,37 +1,18 @@
-# cnodejs
+# 仿 cnodejs 项目
 
 ```
 待完成
-* 分页
-* 页面加载动画
 * 移动端支持
 * 用户头像的异步加载
 * 其它细节优化
 ```
-## Project setup
+## 如何运行
 ```
+# 1.安装依赖
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
+# 2.开发环境运行
 npm run serve
-```
-
-### Compiles and minifies for production
-```
+# 3.生产环境运行
 npm run build
-```
 
-### Run your tests
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
