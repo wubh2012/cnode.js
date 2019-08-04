@@ -5,13 +5,12 @@
   <div v-else>
     
     <div class="panel">
-      <div class="header">
-        <a href="/?tab=all" class="topicTab active">全部</a>
-        <a href="/?tab=good" class="topicTab">精华</a>
-        <a href="/?tab=share" class="topicTab">分享</a>
-        <a href="/?tab=ask" class="topicTab">问答</a>
-        <a href="/?tab=job" class="topicTab">招聘</a>
-        <a href="/?tab=dev" class="topicTab">客户端测试</a>
+      <div class="header" id="topicTab">
+        <a href="/?tab=all" class="topicTab active" @click="changeTab" data-tab="all" >全部</a>
+        <a href="/?tab=good" class="topicTab" @click="changeTab" data-tab="good">精华</a>
+        <a href="/?tab=share" class="topicTab" @click="changeTab" data-tab="share">分享</a>
+        <a href="/?tab=ask" class="topicTab" @click="changeTab" data-tab="ask">问答</a>
+        <a href="/?tab=job" class="topicTab" @click="changeTab" data-tab="job">招聘</a>
       </div>
       <div>
         <div class="cell" v-for="topic in postlist" :key="topic.id">
@@ -34,7 +33,7 @@
           >{{topic.title}}</router-link>
           <span class="lastTime">{{topic.last_reply_at | formatterDate}}</span>
         </div>        
-        <Pagination />
+        <Pagination @click="handlePage"/>
       </div>
     </div>
   </div>
@@ -45,6 +44,9 @@ export default {
   name: "postList",
   data() {
     return {
+      page: 1,
+      limit: 20,
+      tab: 'all',
       isloading: true,
       postlist: []
     };
@@ -55,21 +57,47 @@ export default {
   methods: {
     getData() {
       this.$http
-        .get("https://cnodejs.org/api/v1/topics")
+        .get("https://cnodejs.org/api/v1/topics",{
+          params: {
+            page: this.page,
+            limit: this.limit,
+            tab: this.tab
+          }
+        })
         .then(res => {
           if (res.data.success === true) {
-            console.log("topics", res);
-            this.postlist = res.data.data;
-            this.isloading = false;
+            console.log("topics", res)
+            this.postlist = res.data.data
+            this.isloading = false
           }
         })
         .catch(err => {
-          console.error("获取主题列表异常", err);
+          console.error("获取主题列表异常", err)
         });
+    },
+    handlePage(page){
+      this.page = page
+      this.getData()
+    },
+    changeTab(event){
+      event.preventDefault()
+      let element = event.target
+      console.log(element)
+      
+      let parentEle = element.parentElement
+      console.log(typeof parentEle.children, parentEle.children)
+      Array.from(parentEle.children).forEach((ele)=>{
+        ele.classList.remove('active')
+      })
+      element.classList.add('active')
+      console.log('attribute', element.dataset.tab)
+
+      this.tab = element.dataset.tab
+      this.getData()
     }
   },
   created() {
-    this.getData();
+    this.getData()
   }
 };
 </script>
