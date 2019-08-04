@@ -10,17 +10,18 @@
 </template>
 <script>
 export default {
-  name: "sidebarQRCode",
+  name: "sidebarQRCode"
 };
 </script>
 <style lang="scss" scoped>
-.panel{
-  .body{
+.panel {
+  .body {
     text-align: center;
-    a{
+    a {
       color: #778087;
     }
   }
+  
 }
 </style>
 

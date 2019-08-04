@@ -41,11 +41,13 @@ export default {
 <style scoped lang="scss">
 .navbar {
   display: flex;
-  height: 50px;
   justify-content: center;
   align-items: center;
   background-color: #444;
   color: #ccc;
+  @media screen and (max-width: 400px){
+    margin: 0 5px;
+  }
   .navbar-inner {
     width: 90%;
     max-width: 1400px;
@@ -53,10 +55,18 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    @media screen and (max-width: 400px){
+      width: 100%;
+      flex-direction: column;
+      padding: 0;
+    }
   }
   .logo {
     display: flex;
     align-items: center;
+    @media screen and (max-width: 400px){
+      flex-direction: column;
+    }
     .brand {
       img {
         width: 120px;
@@ -116,5 +126,11 @@ export default {
   }
 }
 </style>
+<style lang="scss" scoped>
+@media screen and (max-width: 480px){
+  
+}
+</style>
+
 
 

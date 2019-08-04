@@ -76,6 +76,9 @@
       word-break: break-word;
     }
   }
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 }
 </style>
 
