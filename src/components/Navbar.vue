@@ -2,9 +2,9 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="logo">
-        <a href="/" class="brand">
+        <router-link to="/" class="brand">
           <img src="../assets/img/cnodejs_light.svg" alt srcset />
-        </a>
+        </router-link>        
         <div class="searchbar">
           <input type="text" class="search" />
           <img src="../assets/img/search.png" alt srcset />
@@ -12,7 +12,7 @@
       </div>
       <ul class="nav">
         <li>
-          <a href="/">首页</a>
+          <router-link to="/">首页</router-link>
         </li>
         <li>
           <a href="#">新手入门</a>
