@@ -45,17 +45,17 @@ export default {
   align-items: center;
   background-color: #444;
   color: #ccc;
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 480px){
     margin: 0 5px;
   }
   .navbar-inner {
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    @media screen and (max-width: 400px){
+    @media screen and (max-width: 480px){
       width: 100%;
       flex-direction: column;
       padding: 0;
@@ -64,7 +64,7 @@ export default {
   .logo {
     display: flex;
     align-items: center;
-    @media screen and (max-width: 400px){
+    @media screen and (max-width: 480px){
       flex-direction: column;
     }
     .brand {
@@ -115,6 +115,7 @@ export default {
         font-size: 13px;
         padding: 10px 15px;
         color: #ccc;
+        white-space: nowrap;
         &:hover {
           color: #fff;
         }
@@ -124,11 +125,6 @@ export default {
       }
     }
   }
-}
-</style>
-<style lang="scss" scoped>
-@media screen and (max-width: 480px){
-  
 }
 </style>
 
