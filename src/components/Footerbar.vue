@@ -63,6 +63,7 @@
 .footer {
   background: #fff;
   .main {
+    width: 90%;
     max-width: 1400px;
     min-width: 960px;
     margin: 0 auto;
@@ -75,8 +76,8 @@
       font-size: 14px;
       word-break: break-word;
     }
-  }
-  @media screen and (max-width: 400px) {
+  }  
+  @media screen and (max-width: 979px) {
     display: none;
   }
 }

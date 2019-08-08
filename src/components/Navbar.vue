@@ -45,11 +45,12 @@ export default {
   align-items: center;
   background-color: #444;
   color: #ccc;
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 979px){
     margin: 0 5px;
   }
+  
   .navbar-inner {
-    width: 100%;
+    width: 90%;
     max-width: 1400px;
     display: flex;
     justify-content: space-between;
@@ -58,7 +59,10 @@ export default {
     @media screen and (max-width: 480px){
       width: 100%;
       flex-direction: column;
-      padding: 0;
+    }
+    @media screen and (max-width: 900px){
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
   .logo {
@@ -121,6 +125,11 @@ export default {
         }
         &:focus {
           color: #3f82c4;
+        }
+        @media screen and (min-width: 490px) and (max-width: 979px){
+          &:first-child{
+            padding-left: 0;
+          }
         }
       }
     }
