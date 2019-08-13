@@ -1,14 +1,15 @@
 # cnodejs 项目
-使用 vue cli + vue router + axios 等技术高仿 cnodejs.org 站点
-
-* 实现路由跳转
-* 自定义首页的分页组件
-* 实现数据加载的 Loading 动画
-* 利用 CSS @media 支持移动端样式
+使用 vue cli + vue router + axios 等技术利用 CNode社区提供的 API 实现
 
 ![pc](./images/01.png)
 
 ![mobile](./images/02.png)
+
+## 项目特点
+* 网页利用 CSS @media 同时支持PC端和移动端查看
+* 使用 vue router 实现路由之间跳转及数据传递
+* 使用 vue component 实现首页的分页组件
+* 自定义 Loading 组件实现数据请求的加载动画，提高用户体验
 
 ## 如何运行
 ```
